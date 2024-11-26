@@ -1,9 +1,11 @@
 package dev.otthon.loan.dto;
 
+import java.math.BigDecimal;
+
 public record CustomerLoanRequestDTO(
         Integer age,
         String cpf,
         String name,
-        Double income,
+        BigDecimal income,
         String location) {
 }
