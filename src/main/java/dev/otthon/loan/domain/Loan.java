@@ -23,6 +23,10 @@ public class Loan {
                 && customer.isCustomerLocation("SP");
     }
 
+    public boolean isPayrollLoanAvailable() {
+        return customer.isIncomeEqualOrGraterThan(new BigDecimal(5000));
+    }
+
     public double getPersonalLoanInterestRate() {
         if (isPersonalLoanAvailable()) {
             return InterestRate.PERSONAL_LOAN;
@@ -30,6 +34,11 @@ public class Loan {
         throw new LoanNotAvailableException("Personal loan not available for this customer");
     }
 
-
+    public double getPayrollLoanInterestRate() {
+        if (isPayrollLoanAvailable()) {
+            return InterestRate.PAYROLL_LOAN;
+        }
+        throw new LoanNotAvailableException("Payroll loan not available for this customer");
+    }
 
 }

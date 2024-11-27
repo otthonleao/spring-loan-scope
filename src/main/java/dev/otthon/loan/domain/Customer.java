@@ -20,6 +20,10 @@ public class Customer {
         return income.compareTo(value) <= 0;
     }
 
+    public boolean isIncomeEqualOrGraterThan(BigDecimal value) {
+        return income.compareTo(value) >= 0;
+    }
+
     public boolean isAgeBetween(int min, int max) {
         return age >= min && age <= max;
     }
