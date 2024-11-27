@@ -26,6 +26,9 @@ public class LoanService {
         if (loan.isPayrollLoanAvailable()) {
             loans.add(new LoanResponseDTO(LoanType.GUARANTEED, loan.getPayrollLoanInterestRate()));
         }
+        if (loan.isSecuredLoanAvailable()) {
+            loans.add(new LoanResponseDTO(LoanType.CONSIGNMENT, loan.getSecuredLoanInterestRate()));
+        }
 
         return new CustomerLoanResponseDTO(loanRequestDTO.name(), loans);
     }

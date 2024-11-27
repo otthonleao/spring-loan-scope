@@ -27,6 +27,16 @@ public class Loan {
         return customer.isIncomeEqualOrGraterThan(new BigDecimal(5000));
     }
 
+    public boolean isSecuredLoanAvailable() {
+        if (customer.isIncomeEqualOrLowerThan(new BigDecimal(3000))) {
+            return true;
+        }
+
+        return customer.isAgeBetween(18, 30)
+                && customer.isIncomeBetween(new BigDecimal(3000), new BigDecimal(5000))
+                && customer.isCustomerLocation("SP");
+    }
+
     public double getPersonalLoanInterestRate() {
         if (isPersonalLoanAvailable()) {
             return InterestRate.PERSONAL_LOAN;
@@ -39,6 +49,13 @@ public class Loan {
             return InterestRate.PAYROLL_LOAN;
         }
         throw new LoanNotAvailableException("Payroll loan not available for this customer");
+    }
+
+    public double getSecuredLoanInterestRate() {
+        if (isSecuredLoanAvailable()) {
+            return InterestRate.SECURED_LOAN;
+        }
+        throw new LoanNotAvailableException("Secured loan not available for this customer");
     }
 
 }
