@@ -3,6 +3,7 @@ package dev.otthon.loan.controller;
 import dev.otthon.loan.dto.CustomerLoanRequestDTO;
 import dev.otthon.loan.dto.CustomerLoanResponseDTO;
 import dev.otthon.loan.service.LoanService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +17,7 @@ public class LoanController {
     private final LoanService loanService;
 
     @PostMapping(value = "/customer-loans")
-    public ResponseEntity<CustomerLoanResponseDTO> customerLoans(@RequestBody CustomerLoanRequestDTO request) {
+    public ResponseEntity<CustomerLoanResponseDTO> customerLoans(@Valid @RequestBody CustomerLoanRequestDTO request) {
        var loanResponse = loanService.checkLoanAvailability(request);
         return ResponseEntity.ok(loanResponse);
     }
